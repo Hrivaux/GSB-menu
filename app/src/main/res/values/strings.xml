@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">GSB-menu</string>
+    <string name="Open_nav">Open GSB menu</string>
+    <string name="Close_nav">Close GSB menu</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //list deroulante
+    <string-array name="choix_spinner">
+        <item>Visiteur</item>
+        <item>Délégué</item>
+        <item>Responsable</item>
+    </string-array>
+</resources>

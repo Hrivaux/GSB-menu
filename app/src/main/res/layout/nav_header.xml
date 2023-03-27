@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="@color/bleu_clair"
+    android:gravity="bottom"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:layout_width="62dp"
+        android:layout_height="45dp"
+        android:src="@drawable/log"></ImageView>
+
+    <TextView
+        android:layout_width="62dp"
+        android:layout_height="45dp"
+        android:text="GSB"
+        android:textSize="30dp"></TextView>
+
+
+</LinearLayout>

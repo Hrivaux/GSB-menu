@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/nomEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nom"
+       android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/prenomEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Prénom"
+        android:minHeight="50dp"/>
+
+    <Spinner
+        android:id="@+id/listeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/choix_spinner"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mot de passe"
+        android:inputType="textPassword"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/villeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ville"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/adresseEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Adresse"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/codePostalEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Code postal"
+        android:minHeight="50dp"/>
+
+    <Button
+        android:id="@+id/button_ouvrir_compte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ouvrir un compte"
+        android:minHeight="50dp"/>
+
+</LinearLayout>
