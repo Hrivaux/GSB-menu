@@ -20,7 +20,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class add_compte_Fragment extends Fragment {
+public class add_utilisateur_Fragment extends Fragment {
         private EditText etNomUtilisateur;
         private EditText etMotDePasse;
         private EditText etVille;
@@ -34,7 +34,7 @@ public class add_compte_Fragment extends Fragment {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                View rootView = inflater.inflate(R.layout.fragment_add_compte_, container, false);
+                View rootView = inflater.inflate(R.layout.fragment_add_utilisateur_, container, false);
 
                 etNomUtilisateur = rootView.findViewById(R.id.nomEditText);
                 etPrenomUtilisateur = rootView.findViewById(R.id.prenomEditText);

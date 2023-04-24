@@ -50,60 +50,18 @@ public class CompteRenduFragment extends Fragment {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
 
-                                if (!jsonObject.has("id")) {
-                                    Log.e(TAG, "Error while parsing JSON response: No value for id");
-                                    continue;
-                                }
-                                int id = jsonObject.getInt("id");
+                                int id = jsonObject.optInt("C.id", 0);
 
-                                if (!jsonObject.has("id_visiteur")) {
-                                    Log.e(TAG, "Error while parsing JSON response: No value for id_visiteur");
-                                    continue;
-                                }
-                                int idVisiteur = jsonObject.getInt("id_visiteur");
+                                String idVisiteur = jsonObject.optString("nom_visiteur", "");
+                                String idMedecin = jsonObject.optString("nom_medecin", "");
 
-                                if (!jsonObject.has("id_medecin")) {
-                                    Log.e(TAG, "Error while parsing JSON response: No value for id_medecin");
-                                    continue;
-                                }
-                                int idMedecin = jsonObject.getInt("id_medecin");
-
-                                if (!jsonObject.has("date")) {
-                                    Log.e(TAG, "Error while parsing JSON response: No value for date");
-                                    continue;
-                                }
-                                String date = jsonObject.getString("date");
-
-                                if (!jsonObject.has("id_echantillon")) {
-                                    Log.e(TAG, "Error while parsing JSON response: No value for id_echantillon");
-                                    continue;
-                                }
-                                int idEchantillon = jsonObject.getInt("id_echantillon");
-
-                                if (!jsonObject.has("nouvelle_visite")) {
-                                    Log.e(TAG, "Error while parsing JSON response: No value for nouvelle_visite");
-                                    continue;
-                                }
-                                String nouvelleVisite = jsonObject.getString("nouvelle_visite");
-
-                                if (!jsonObject.has("compterendu")) {
-                                    Log.e(TAG, "Error while parsing JSON response: No value for compterendu");
-                                    continue;
-                                }
-                                String compteRendu = jsonObject.getString("compterendu");
-
-                                if (!jsonObject.has("avis")) {
-                                    Log.e(TAG, "Error while parsing JSON response: No value for avis");
-                                    continue;
-                                }
-                                String avis = jsonObject.getString("avis");
-
-                                if (!jsonObject.has("etat")) {
-                                    Log.e(TAG, "Error while parsing JSON response: No value for etat");
-                                    continue;
-                                }
-                                String etat = jsonObject.getString("etat");
-                                int idMotif = jsonObject.getInt("id_motif");
+                                String date = jsonObject.optString("date", "");
+                                String idEchantillon = jsonObject.optString("nom_medicament", "");
+                                String nouvelleVisite = jsonObject.optString("nouvelle_visite", "");
+                                String compteRendu = jsonObject.optString("compte_rendu", "");
+                                String avis = jsonObject.optString("avis", "");
+                                String etat = jsonObject.optString("etat", "");
+                                String idMotif = jsonObject.optString("libelle_motif", "");
 
                                 TableRow tableRow = new TableRow(getActivity());
 
@@ -143,7 +101,11 @@ public class CompteRenduFragment extends Fragment {
                                 tableRow.addView(textViewCompteRendu);
 
                                 TextView textViewAvis = new TextView(getActivity());
-                                textViewAvis.setText(avis);
+                                if (etat.equals("0")) {
+                                    textViewAvis.setText("Défavorable");
+                                } else {
+                                    textViewAvis.setText("Favorable");
+                                }
                                 textViewAvis.setPadding(8, 8, 8, 8);
                                 tableRow.addView(textViewAvis);
 

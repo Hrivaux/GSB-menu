@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_add_compte:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new add_compte_Fragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new add_utilisateur_Fragment()).commit();
                 break;
 
             case R.id.nav_history:
