@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_list_compte:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new list_compte_Fragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new CompteRenduFragment()).commit();
                 break;
 
             case R.id.nav_list_medecins:

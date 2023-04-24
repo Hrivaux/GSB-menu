@@ -1,9 +1,5 @@
 package com.example.gsb_menu;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
-import static java.security.AccessController.getContext;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +16,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.gsb_menu.R;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,7 +46,6 @@ public class add_compte_Fragment extends Fragment {
                 btnInscription = rootView.findViewById(R.id.button_ouvrir_compte);
 
                 mRequestQueue = Volley.newRequestQueue(requireContext());
-
                 btnInscription.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -69,7 +63,11 @@ public class add_compte_Fragment extends Fragment {
                                         new Response.Listener<String>() {
                                                 @Override
                                                 public void onResponse(String response) {
-                                                        Toast.makeText(getContext(), "Inscription réussie!", Toast.LENGTH_SHORT).show();
+                                                        if (response.equals("success")) {
+                                                                Toast.makeText(getContext(), "Inscription réussie!", Toast.LENGTH_SHORT).show();
+                                                        } else {
+                                                                Toast.makeText(getContext(), "Erreur lors de l'inscription", Toast.LENGTH_SHORT).show();
+                                                        }
                                                 }
                                         }, new Response.ErrorListener() {
                                         @Override

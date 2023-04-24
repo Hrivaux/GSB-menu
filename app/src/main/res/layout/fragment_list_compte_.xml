@@ -1,18 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".list_compte_Fragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:text=" liste des comptes rendus fragment"
-        android:textColor="@color/black"
-        android:textSize="30dp" />
+    <TableLayout
+        android:id="@+id/table_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- En-tête de la table -->
+        <TableRow>
+
+            <TextView
+                android:padding="8dp"
+                android:text="ID"
+                android:textStyle="bold" />
+
+            <TextView
+                android:padding="8dp"
+                android:text="ID Visiteur"
+                android:textStyle="bold" />
+
+            <TextView
+                android:padding="8dp"
+                android:text="ID Medecin"
+                android:textStyle="bold" />
+
+            <TextView
+                android:padding="8dp"
+                android:text="Date"
+                android:textStyle="bold" />
+
+            <TextView
+                android:padding="8dp"
+                android:text="ID Echantillon"
+                android:textStyle="bold" />
+
+            <TextView
+                android:padding="8dp"
+                android:text="Nouvelle Visite"
+                android:textStyle="bold" />
+
+            <TextView
+                android:padding="8dp"
+                android:text="Compte Rendu"
+                android:textStyle="bold" />
+
+            <TextView
+                android:padding="8dp"
+                android:text="Avis"
+                android:textStyle="bold" />
+
+            <TextView
+                android:padding="8dp"
+                android:text="Etat"
+                android:textStyle="bold" />
+
+            <TextView
+                android:padding="8dp"
+                android:text="ID Motif"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+    </TableLayout>
 
 </RelativeLayout>
