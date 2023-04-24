@@ -1,9 +1,13 @@
 package com.example.gsb_menu;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -26,95 +31,57 @@ import java.util.List;
 
 public class list_medecins_Fragment extends Fragment {
 
-        List<TextView> prenomTextViews;
-        List<TextView> adresseTextViews;
-        List<TextView> nomTextViews;
+        private static final String TAG = "TableDataActivity";
+        private static final String URL = "https://hugo-rivaux.fr/API/medecin.php";
+        private RequestQueue mRequestQueue;
+        private TableLayout mTableLayout;
 
-        @Nullable
         @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
                 View view = inflater.inflate(R.layout.fragment_list_medecins_, container, false);
-
-                prenomTextViews = new ArrayList<>();
-                prenomTextViews.add((TextView) view.findViewById(R.id.Prenom0));
-                prenomTextViews.add((TextView) view.findViewById(R.id.Prenom1));
-                prenomTextViews.add((TextView) view.findViewById(R.id.Prenom2));
-                prenomTextViews.add((TextView) view.findViewById(R.id.Prenom3));
-                prenomTextViews.add((TextView) view.findViewById(R.id.Prenom4));
-                prenomTextViews.add((TextView) view.findViewById(R.id.Prenom5));
-                prenomTextViews.add((TextView) view.findViewById(R.id.Prenom6));
-                prenomTextViews.add((TextView) view.findViewById(R.id.Prenom7));
-                prenomTextViews.add((TextView) view.findViewById(R.id.Prenom8));
-
-                adresseTextViews = new ArrayList<>();
-                adresseTextViews.add((TextView) view.findViewById(R.id.Adresse0));
-                adresseTextViews.add((TextView) view.findViewById(R.id.Adresse1));
-                adresseTextViews.add((TextView) view.findViewById(R.id.Adresse2));
-                adresseTextViews.add((TextView) view.findViewById(R.id.Adresse3));
-                adresseTextViews.add((TextView) view.findViewById(R.id.Adresse4));
-                adresseTextViews.add((TextView) view.findViewById(R.id.Adresse5));
-                adresseTextViews.add((TextView) view.findViewById(R.id.Adresse6));
-                adresseTextViews.add((TextView) view.findViewById(R.id.Adresse7));
-                adresseTextViews.add((TextView) view.findViewById(R.id.Adresse8));
-
-                nomTextViews = new ArrayList<>();
-                nomTextViews.add((TextView) view.findViewById(R.id.Nom0));
-                nomTextViews.add((TextView) view.findViewById(R.id.Nom1));
-                nomTextViews.add((TextView) view.findViewById(R.id.Nom2));
-                nomTextViews.add((TextView) view.findViewById(R.id.Nom3));
-                nomTextViews.add((TextView) view.findViewById(R.id.Nom4));
-                nomTextViews.add((TextView) view.findViewById(R.id.Nom5));
-                nomTextViews.add((TextView) view.findViewById(R.id.Nom6));
-                nomTextViews.add((TextView) view.findViewById(R.id.Nom7));
-                nomTextViews.add((TextView) view.findViewById(R.id.Nom8));
-                fetchMedecins();
-
+                mTableLayout = view.findViewById(R.id.table_layout);
+                mRequestQueue = Volley.newRequestQueue(getActivity());
+                fetchDataFromApi();
                 return view;
         }
 
-
-        private void fetchMedecins() {
-                String url = "https://hugo-rivaux.fr/API/medecin.php";
-                RequestQueue queue = Volley.newRequestQueue(requireContext());
-
-                StringRequest request = new StringRequest(Request.Method.POST, url,
-                        new Response.Listener<String>() {
+        private void fetchDataFromApi() {
+                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                        Request.Method.GET,
+                        URL,
+                        null,
+                        new Response.Listener<JSONArray>() {
                                 @Override
-                                public void onResponse(String response) {
+                                public void onResponse(JSONArray response) {
                                         try {
-                                                JSONArray jsonArray = new JSONArray(response);
-                                                List<String> prenoms = new ArrayList<>();
-                                                List<String> adresses = new ArrayList<>();
-                                                List<String> noms = new ArrayList<>();
+                                                for (int i = 0; i < response.length(); i++) {
+                                                        JSONObject jsonObject = response.getJSONObject(i);
 
+                                                        TableRow tableRow = new TableRow(getActivity());
 
+                                                        TextView TextViewNomMedecin = new TextView(getActivity());
+                                                        TextViewNomMedecin.setText(jsonObject.optString("nom", ""));
+                                                        TextViewNomMedecin.setPadding(8, 8, 8, 8);
+                                                        tableRow.addView(TextViewNomMedecin);
 
-                                                // Parcours du tableau de résultats
-                                                for (int i = 0; i < jsonArray.length(); i++) {
-                                                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                                        prenoms.add(jsonObject.getString("prenom"));
-                                                        adresses.add(jsonObject.getString("adresse"));
-                                                        noms.add(jsonObject.getString("nom"));
+                                                        TextView TextViewPrenomMedecin = new TextView(getActivity());
+                                                        TextViewPrenomMedecin.setText(String.valueOf(jsonObject.optString("prenom", "")));
+                                                        TextViewPrenomMedecin.setPadding(8, 8, 8, 8);
+                                                        tableRow.addView(TextViewPrenomMedecin);
 
+                                                        TextView TextViewAdresseMedecin = new TextView(getActivity());
+                                                        TextViewAdresseMedecin.setText(String.valueOf(jsonObject.optString("adresse", "")));
+                                                        TextViewAdresseMedecin.setPadding(8, 8, 8, 8);
+                                                        tableRow.addView(TextViewAdresseMedecin);
 
-                                                }
-
-                                                // Affichage des prénoms et adresses dans les TextView correspondants
-                                                for (int i = 0; i < prenomTextViews.size(); i++) {
-                                                        if (i < prenoms.size()) {
-                                                                prenomTextViews.get(i).setText(prenoms.get(i));
-                                                                adresseTextViews.get(i).setText(adresses.get(i));
-                                                                nomTextViews.get(i).setText(noms.get(i));
-
-                                                        } else {
-                                                                prenomTextViews.get(i).setText("");
-                                                                adresseTextViews.get(i).setText("");
-                                                                nomTextViews.get(i).setText("");
-
-                                                        }
+                                                        TextView TextViewMailMedecin = new TextView(getActivity());
+                                                        TextViewMailMedecin.setText(String.valueOf(jsonObject.optString("email", "")));
+                                                        TextViewMailMedecin.setPadding(8, 8, 8, 8);
+                                                        tableRow.addView(TextViewMailMedecin);
+                                                        mTableLayout.addView(tableRow); // Ajouter la ligne à la table
                                                 }
                                         } catch (JSONException e) {
-                                                e.printStackTrace();
+                                                throw new RuntimeException(e);
                                         }
                                 }
                         },
@@ -122,9 +89,11 @@ public class list_medecins_Fragment extends Fragment {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                         error.printStackTrace();
+                                        Log.e(TAG, "Error while fetching data from API: " + error.getMessage());
                                 }
-                        });
+                        }
+                );
 
-                queue.add(request);
+                mRequestQueue.add(jsonArrayRequest);
         }
 }
