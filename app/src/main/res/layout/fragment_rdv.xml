@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RdvFragment">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text=" Organiser une visite fragment"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        android:layout_centerInParent="true"/>
 
-</RelativeLayout>
+
+    <Spinner
+        android:id="@+id/listeSpinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/choix_spinner_medecin"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/date_rdvEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date"
+        android:minHeight="50dp"/>
+
+    <Spinner
+        android:id="@+id/listeSpinner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/choix_spinner_echantillon"
+        android:minHeight="50dp"/>
+
+
+
+    <Button
+        android:id="@+id/button_organiser_visite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Organiser la visite"
+        android:minHeight="50dp"/>
+
+</LinearLayout>
