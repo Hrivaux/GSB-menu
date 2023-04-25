@@ -11,4 +11,30 @@
         <item>Délégué</item>
         <item>Responsable</item>
     </string-array>
+
+    //list deroulante medecin
+    <string-array name="choix_spinner_medecin">
+        <item>Robert Benjamin</item>
+        <item>Dzeemaili Emine</item>
+        <item>Rivaux Hugo</item>
+    </string-array>
+
+    //list deroulante
+    <string-array name="choix_spinner_echantillon">
+        <item>Doliprane</item>
+        <item>Efferalgan</item>
+        <item>Amoxapine</item>
+        <item>Amphétamine</item>
+        <item>Amoxicilline</item>
+        <item>Bosentan</item>
+        <item>Buséréline</item>
+        <item>Cartéolol</item>
+        <item>Cilostazol</item>
+        <item>Déféroxamine</item>
+        <item>Eplérénone</item>
+        <item>Frovatriptan</item>
+        <item>Hydroquinone</item>
+        <item>Imipramine</item>
+        <item>Mafénide</item>
+    </string-array>
 </resources>
