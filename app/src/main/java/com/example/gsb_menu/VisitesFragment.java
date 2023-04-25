@@ -52,7 +52,7 @@ public class VisitesFragment extends Fragment {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
 
-                                int id = jsonObject.optInt("id", 0);
+                                //int id = jsonObject.optInt("id", 0);
 
                                 String idVisiteur = jsonObject.optString("nom_visiteur", "");
 
@@ -64,10 +64,10 @@ public class VisitesFragment extends Fragment {
 
                                 TableRow tableRow = new TableRow(getActivity());
 
-                                TextView textViewId = new TextView(getActivity());
+                                /*TextView textViewId = new TextView(getActivity());
                                 textViewId.setText(String.valueOf(id));
                                 textViewId.setPadding(8, 8, 8, 8);
-                                tableRow.addView(textViewId);
+                                tableRow.addView(textViewId);*/
 
                                 TextView textViewIdVisiteur = new TextView(getActivity());
                                 textViewIdVisiteur.setText(String.valueOf(idVisiteur));

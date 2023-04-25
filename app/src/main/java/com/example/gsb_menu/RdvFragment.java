@@ -37,7 +37,7 @@ public class RdvFragment extends Fragment {
     private Spinner listeSpinner2;
     private Button button_organiser_visite;
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
