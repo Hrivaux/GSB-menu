@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".VisitesFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text=" Visite à venir fragment"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        android:layout_centerInParent="true"/>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <TableLayout
+            android:id="@+id/table_layout_visite"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <!-- En-tête de la table -->
+            <TableRow>
+
+                <TextView
+                    android:padding="8dp"
+                    android:text="Nom visiteur"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:padding="8dp"
+                    android:text="Nom médecin"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:padding="8dp"
+                    android:text="Echantillon"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:padding="8dp"
+                    android:text="Date"
+                    android:textStyle="bold" />
+
+
+
+            </TableRow>
+
+        </TableLayout>
+    </HorizontalScrollView>
 
 </RelativeLayout>

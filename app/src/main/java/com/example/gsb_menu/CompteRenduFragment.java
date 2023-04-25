@@ -50,9 +50,10 @@ public class CompteRenduFragment extends Fragment {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
 
-                                int id = jsonObject.optInt("C.id", 0);
+                                int id = jsonObject.optInt("id", 0);
 
                                 String idVisiteur = jsonObject.optString("nom_visiteur", "");
+
                                 String idMedecin = jsonObject.optString("nom_medecin", "");
 
                                 String date = jsonObject.optString("date", "");

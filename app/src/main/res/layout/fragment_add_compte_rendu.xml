@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/nom_medEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nom Medecin"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/date_crEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date"
+        android:minHeight="50dp"/>
+
+    <!-- <Spinner
+         android:id="@+id/listeSpinner"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:entries="@array/choix_spinner"
+         android:minHeight="50dp"/>-->
+
+    <EditText
+        android:id="@+id/echantillon_testEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Echantillon Testé"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/motif_visiteEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Motif Visite"
+        android:inputType="textPassword"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/avisEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Avis"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/etatEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Etat"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/nouvelle_visiteEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nouvelle visite "
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/commentaireEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Commentaire"
+        android:minHeight="50dp"/>
+
+    <Button
+        android:id="@+id/button_ajouter_cr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ouvrir un compte"
+        android:minHeight="50dp"/>
+
+</LinearLayout>
