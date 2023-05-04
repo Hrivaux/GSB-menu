@@ -72,7 +72,7 @@
         android:id="@+id/button_ajouter_cr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ouvrir un compte"
+        android:text="Ajouter ce compte rendu"
         android:minHeight="50dp"/>
 
 </LinearLayout>
