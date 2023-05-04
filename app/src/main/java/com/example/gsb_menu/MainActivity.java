@@ -76,12 +76,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new add_utilisateur_Fragment()).commit();
                 break;
 
-            case R.id.nav_history:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new homeFragment()).commit();
-                break;
-
             case R.id.nav_logout:
-                Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Déconnecté !", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, loginActivity.class);
                 startActivity(intent);
                 finish(); // optionnel, pour fermer l'activité actuelle
@@ -102,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 // la méthode publique pour charger le Fragment inscriptionR
-    public void loadInscriptionFragment(String nom, String prenom, String visiteur, String email, String password, String ville, String adresse, String codePostal) {
+    public void loadInscriptionFragment(String nom, String prenom, String visiteur, String email, String password, String ville, String adresse, String codePostal, int grade) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         inscriptionR fragment = new inscriptionR();
@@ -115,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         args.putString("ville", ville);
         args.putString("adresse", adresse);
         args.putString("codePostal", codePostal);
+        args.putString("grade", String.valueOf(grade));
         fragment.setArguments(args);
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
