@@ -21,8 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class add_compterenduFragment extends Fragment {
-
-    private EditText etNomMedecin;
+    private EditText etIdMedecin;
     private EditText etDateCR;
     private EditText etEchantillonTest;
     private EditText etMotifVisite;
@@ -38,9 +37,9 @@ public class add_compterenduFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_add_compte_rendu, container, false);
 
-        etNomMedecin = rootView.findViewById(R.id.nom_medEditText);
+        etIdMedecin = rootView.findViewById(R.id.cr_med);
         etDateCR = rootView.findViewById(R.id.date_crEditText);
-        etEchantillonTest = rootView.findViewById(R.id.echantillon_testEditText);
+        etEchantillonTest = rootView.findViewById(R.id.cr_echantillon);
         etMotifVisite = rootView.findViewById(R.id.motif_visiteEditText);
         etAvis = rootView.findViewById(R.id.avisEditText);
         etEtat = rootView.findViewById(R.id.etatEditText);
@@ -52,43 +51,43 @@ public class add_compterenduFragment extends Fragment {
         btnAjoutCR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nomUtilisateur = etNomMedecin.getText().toString();
-                String prenomUtilisateur = etDateCR.getText().toString();
-                String emailUtilisateur = etEchantillonTest.getText().toString();
-                String motDePasse = etMotifVisite.getText().toString();
-                String adresseUtilisateur = etAvis.getText().toString();
-                String ville = etEtat.getText().toString();
-                String code_postal = etNouvelleVisite.getText().toString();
-                String commentaire = etCommentaire.getText().toString();
+                String idMedecin = etIdMedecin.getText().toString();
+                String dateCR = etDateCR.getText().toString();
+                String echantillonCR = etEchantillonTest.getText().toString();
+                String motifCR = etMotifVisite.getText().toString();
+                String avisCR = etAvis.getText().toString();
+                String etatCR = etEtat.getText().toString();
+                String nouvelleVisite = etNouvelleVisite.getText().toString();
+                String commentaireCR = etCommentaire.getText().toString();
 
-                String url = "https://hugo-rivaux.fr/API/inscription.php";
+                String url = "https://gsb.gabin-tournier.fr/API/ajouterCR.php";
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 if (response.equals("success")) {
-                                    Toast.makeText(getContext(), "Inscription réussie!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "Saisie du compte rendu réussie !", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(getContext(), "Erreur lors de l'inscription", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "Erreur lors de la saisie du compte rendu.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "Erreur lors de l'inscription", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Erreur lors de la saisie.", Toast.LENGTH_SHORT).show();
                     }
                 }) {
                     @Override
                     protected Map<String, String> getParams() {
                         Map<String, String> params = new HashMap<>();
-                        params.put("nom_utilisateur", nomUtilisateur);
-                        params.put("prenom_utilisateur", prenomUtilisateur);
-                        params.put("email_utilisateur", emailUtilisateur);
-                        params.put("mot_de_passe", motDePasse);
-                        params.put("adresse_utilisateur", adresseUtilisateur);
-                        params.put("ville", ville);
-                        params.put("code_postal", code_postal);
+                        params.put("idMedecin", idMedecin);
+                        params.put("dateCR", dateCR);
+                        params.put("echantillonCR", echantillonCR);
+                        params.put("motifCR", motifCR);
+                        params.put("etatCR", etatCR);
+                        params.put("nouvelleVisite", nouvelleVisite);
+                        params.put("commentaireCR", commentaireCR);
                         return params;
                     }
                 };
