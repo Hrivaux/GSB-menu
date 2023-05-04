@@ -1,18 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".add_medecinsFragment">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text=" ajouter un medecins fragment"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        android:layout_centerInParent="true"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ajout de médecin"
+        android:id="@+id/loginText"
+        android:textSize="36sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="@color/lavender" />
 
-</RelativeLayout>
+    <EditText
+        android:id="@+id/nom_medEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nom "
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/prenom_medEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Prénom "
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/email_medEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/ville_medEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ville"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/codep_medEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Code postal"
+        android:minHeight="50dp"/>
+
+    <EditText
+        android:id="@+id/siret_medEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Siret"
+        android:minHeight="50dp"/>
+
+    <Spinner
+        android:id="@+id/echan_med"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/choix_spinner_echantillon"
+        android:minHeight="50dp"/>
+
+
+    <Button
+        android:id="@+id/button_ajouter_med"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ajouter médecin"
+        android:minHeight="50dp"/>
+
+</LinearLayout>
