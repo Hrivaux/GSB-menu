@@ -116,24 +116,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
     }
-    // la méthode publique pour charger le Fragment notificationR
-
-    public void loadNotificationFragment(String objet, String message, String destinataire) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        notificationR fragment = new notificationR();
-
-        Bundle args = new Bundle();
-        args.putString("objet", objet);
-        args.putString("message", message);
-        args.putString("destinataire", destinataire);
-
-
-        fragment.setArguments(args);
-
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.commit();
-    }
 
 
 
