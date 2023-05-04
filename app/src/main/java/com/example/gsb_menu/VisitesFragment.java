@@ -93,7 +93,7 @@ public class VisitesFragment extends Fragment {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.e(TAG, "Erreur lors de l'analyse de la réponse JSON: " + e.getMessage());
+                            Log.e(TAG, "Erreur lors de l'analyse de la réponse JSON : " + e.getMessage());
                         }
                     }
                 },
@@ -101,7 +101,7 @@ public class VisitesFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
-                        Log.e(TAG, "Erreur lors de la récupération des données de l'API: " + error.getMessage());
+                        Log.e(TAG, "Erreur lors de la récupération des données de l'API : " + error.getMessage());
                     }
                 }
         );
