@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text=" ajouter un medecins fragment"
+        android:text="Ajouter un médecin"
         android:textColor="@color/black"
         android:textSize="30dp"
         android:layout_centerInParent="true"/>

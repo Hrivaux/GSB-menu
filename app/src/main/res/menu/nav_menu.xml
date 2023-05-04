@@ -61,25 +61,9 @@
         <menu>
 
     <item
-        android:id="@+id/nav_settings"
-        android:icon="@drawable/nav_settings"
-        android:title="Paramètres du site"></item>
-
-    <item
-        android:id="@+id/nav_notifications"
-        android:icon="@drawable/nav_notifications"
-        android:title="Notifications"></item>
-
-    <item
         android:id="@+id/nav_add_compte"
         android:icon="@drawable/nav_add_compte"
         android:title="Création de compte"></item>
-
-    <item
-        android:id="@+id/nav_history"
-        android:icon="@drawable/nav_history"
-        android:title="Historique (logs)"></item>
-
 
         </menu>
     </item>
