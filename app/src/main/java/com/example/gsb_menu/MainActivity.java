@@ -97,25 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
-// la méthode publique pour charger le Fragment inscriptionR
-    public void loadInscriptionFragment(String nom, String prenom, String visiteur, String email, String password, String ville, String adresse, String codePostal, int grade) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        inscriptionR fragment = new inscriptionR();
-        Bundle args = new Bundle();
-        args.putString("nom", nom);
-        args.putString("prenom", prenom);
-        args.putString("visiteur", visiteur);
-        args.putString("email", email);
-        args.putString("password", password);
-        args.putString("ville", ville);
-        args.putString("adresse", adresse);
-        args.putString("codePostal", codePostal);
-        args.putString("grade", String.valueOf(grade));
-        fragment.setArguments(args);
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.commit();
-    }
+
 
 
 
