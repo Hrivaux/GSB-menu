@@ -34,7 +34,7 @@
         </menu>
     </item>
 
-    <item android:title="Saisies &amp; Consultations">
+    <item android:title="Saisies &amp; consultations">
 
         <menu>
 
@@ -46,12 +46,12 @@
     <item
         android:id="@+id/nav_list_medecins"
         android:icon="@drawable/nav_list_medecins"
-        android:title="Liste des medecins"></item>
+        android:title="Liste des médecins"></item>
 
     <item
         android:id="@+id/nav_add_medecins"
         android:icon="@drawable/nav_add_medecins"
-        android:title="Ajouter un medecins"></item>
+        android:title="Ajouter un médecin"></item>
 
         </menu>
 
