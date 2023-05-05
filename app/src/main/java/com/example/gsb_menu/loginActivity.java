@@ -1,6 +1,6 @@
 package com.example.gsb_menu;
 
-
+import static com.example.gsb_menu.Parametre.userID;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class loginActivity extends AppCompatActivity {
+
 
     EditText username, password;
     Button login;
@@ -70,11 +71,13 @@ public class loginActivity extends AppCompatActivity {
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         int status = jsonObject.getInt("status");
+
                         if (status == HttpURLConnection.HTTP_OK) {
+                            userID = jsonObject.getInt("id_user");
                             username.setText("");
                             password.setText("");
+                            Toast.makeText(loginActivity.this, "Connexion Réussite " + userID, Toast.LENGTH_LONG).show();
                             Intent intentAccueil = new Intent(loginActivity.this, MainActivity.class);
-
                             startActivity(intentAccueil);
                         } else {
                             Toast.makeText(loginActivity.this, "Email ou mot de passe inccorect ", Toast.LENGTH_LONG).show();
@@ -89,7 +92,9 @@ public class loginActivity extends AppCompatActivity {
                     error.printStackTrace();
                     Toast.makeText(loginActivity.this, "Échec de connexion au serveur. S'il vous plaît, vérifiez votre connexion à internet et réessayez.", Toast.LENGTH_LONG).show();
                 }
-        ) {
+        )
+
+        {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
