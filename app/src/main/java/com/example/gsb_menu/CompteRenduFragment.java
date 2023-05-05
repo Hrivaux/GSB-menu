@@ -30,7 +30,7 @@ import java.util.Map;
 public class CompteRenduFragment extends Fragment {
 
     private static final String TAG = "TableDataActivity";
-    private static final String URL = "https://hugo-rivaux.fr/API/afficherCR.php";
+    private static final String URL = "https://gsb.gabin-tournier.fr/API/afficherCR.php";
     private RequestQueue mRequestQueue;
     private TableLayout mTableLayout;
 

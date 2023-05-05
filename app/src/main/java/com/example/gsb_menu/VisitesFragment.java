@@ -79,21 +79,21 @@ public class VisitesFragment extends Fragment {
                                 textViewIdMedecin.setPadding(8, 8, 8, 8);
                                 tableRow.addView(textViewIdMedecin);
 
-                                TextView textViewDate = new TextView(getActivity());
-                                textViewDate.setText(date);
-                                textViewDate.setPadding(8, 8, 8, 8);
-                                tableRow.addView(textViewDate);
-
                                 TextView textViewIdEchantillon = new TextView(getActivity());
                                 textViewIdEchantillon.setText(String.valueOf(idEchantillon));
                                 textViewIdEchantillon.setPadding(8, 8, 8, 8);
                                 tableRow.addView(textViewIdEchantillon);
 
+                                TextView textViewDate = new TextView(getActivity());
+                                textViewDate.setText(date);
+                                textViewDate.setPadding(8, 8, 8, 8);
+                                tableRow.addView(textViewDate);
+
                                 mTableLayout.addView(tableRow);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.e(TAG, "Error while parsing JSON response: " + e.getMessage());
+                            Log.e(TAG, "Erreur lors de l'analyse de la réponse JSON : " + e.getMessage());
                         }
                     }
                 },
@@ -101,7 +101,7 @@ public class VisitesFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
-                        Log.e(TAG, "Error while fetching data from API: " + error.getMessage());
+                        Log.e(TAG, "Erreur lors de la récupération des données de l'API : " + error.getMessage());
                     }
                 }
         );
