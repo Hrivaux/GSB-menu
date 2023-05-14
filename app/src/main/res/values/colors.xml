@@ -10,5 +10,8 @@
     <color name="lavender">#8692f7</color>
     <color name="bleu_clair"> #ADD8E6</color>
     <color name="Azure">	#F0FFFF</color>
+    <color name="blue">#0000FF</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00FF00</color>
 
 </resources>
