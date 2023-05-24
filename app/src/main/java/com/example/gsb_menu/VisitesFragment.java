@@ -1,6 +1,5 @@
 package com.example.gsb_menu;
 
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,11 +16,15 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class VisitesFragment extends Fragment {
 
@@ -29,7 +32,6 @@ public class VisitesFragment extends Fragment {
     private static final String URL = "https://hugo-rivaux.fr/API/afficherVisite.php";
     private RequestQueue mRequestQueue;
     private TableLayout mTableLayout;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,54 +43,58 @@ public class VisitesFragment extends Fragment {
     }
 
     private void fetchDataFromApi() {
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET,
+        int userId = Parametre.userID;
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST, // Utilise la méthode POST
                 URL,
-                null,
-                new Response.Listener<JSONArray>() {
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
                         try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject jsonObject = response.getJSONObject(i);
+                            JSONArray jsonArray = new JSONArray(response);
 
-                                //int id = jsonObject.optInt("id", 0);
+                            // Vérifier si la réponse contient des données
+                            if (jsonArray.length() > 0) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                String idVisiteur = jsonObject.optString("nom_visiteur", "");
+                                    String idVisiteur = jsonObject.optString("nom_visiteur", "");
+                                    String idMedecin = jsonObject.optString("nom_medecin", "");
+                                    String date = jsonObject.optString("date", "");
+                                    String idEchantillon = jsonObject.optString("nom_medicament", "");
 
-                                String idMedecin = jsonObject.optString("nom_medecin", "");
+                                    TableRow tableRow = new TableRow(getActivity());
 
-                                String date = jsonObject.optString("date", "");
-                                String idEchantillon = jsonObject.optString("nom_medicament", "");
+                                    TextView textViewIdVisiteur = new TextView(getActivity());
+                                    textViewIdVisiteur.setText(idVisiteur);
+                                    textViewIdVisiteur.setPadding(8, 8, 8, 8);
+                                    tableRow.addView(textViewIdVisiteur);
 
+                                    TextView textViewIdMedecin = new TextView(getActivity());
+                                    textViewIdMedecin.setText(idMedecin);
+                                    textViewIdMedecin.setPadding(8, 8, 8, 8);
+                                    tableRow.addView(textViewIdMedecin);
 
+                                    TextView textViewIdEchantillon = new TextView(getActivity());
+                                    textViewIdEchantillon.setText(idEchantillon);
+                                    textViewIdEchantillon.setPadding(8, 8, 8, 8);
+                                    tableRow.addView(textViewIdEchantillon);
+
+                                    TextView textViewDate = new TextView(getActivity());
+                                    textViewDate.setText(date);
+                                    textViewDate.setPadding(8, 8, 8, 8);
+                                    tableRow.addView(textViewDate);
+
+                                    mTableLayout.addView(tableRow);
+                                }
+                            } else {
+                                // Aucun compte rendu trouvé pour cet utilisateur
+                                TextView textViewNoData = new TextView(getActivity());
+                                textViewNoData.setText("Aucun compte rendu trouvé pour cet utilisateur");
+                                textViewNoData.setPadding(8, 8, 8, 8);
                                 TableRow tableRow = new TableRow(getActivity());
-
-                                /*TextView textViewId = new TextView(getActivity());
-                                textViewId.setText(String.valueOf(id));
-                                textViewId.setPadding(8, 8, 8, 8);
-                                tableRow.addView(textViewId);*/
-
-                                TextView textViewIdVisiteur = new TextView(getActivity());
-                                textViewIdVisiteur.setText(String.valueOf(idVisiteur));
-                                textViewIdVisiteur.setPadding(8, 8, 8, 8);
-                                tableRow.addView(textViewIdVisiteur);
-
-                                TextView textViewIdMedecin = new TextView(getActivity());
-                                textViewIdMedecin.setText(String.valueOf(idMedecin));
-                                textViewIdMedecin.setPadding(8, 8, 8, 8);
-                                tableRow.addView(textViewIdMedecin);
-
-                                TextView textViewIdEchantillon = new TextView(getActivity());
-                                textViewIdEchantillon.setText(String.valueOf(idEchantillon));
-                                textViewIdEchantillon.setPadding(8, 8, 8, 8);
-                                tableRow.addView(textViewIdEchantillon);
-
-                                TextView textViewDate = new TextView(getActivity());
-                                textViewDate.setText(date);
-                                textViewDate.setPadding(8, 8, 8, 8);
-                                tableRow.addView(textViewDate);
-
+                                tableRow.addView(textViewNoData);
                                 mTableLayout.addView(tableRow);
                             }
                         } catch (JSONException e) {
@@ -103,10 +109,15 @@ public class VisitesFragment extends Fragment {
                         error.printStackTrace();
                         Log.e(TAG, "Erreur lors de la récupération des données de l'API : " + error.getMessage());
                     }
-                }
-        );
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_user", String.valueOf(userId));
+                return params;
+            }
+        };
 
-        mRequestQueue.add(jsonArrayRequest);
+        mRequestQueue.add(stringRequest);
     }
 }
-
