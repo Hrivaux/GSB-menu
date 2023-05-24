@@ -81,13 +81,14 @@ public class add_compterenduFragment extends Fragment {
                     @Override
                     protected Map<String, String> getParams() {
                         Map<String, String> params = new HashMap<>();
-                        params.put("idMedecin", idMedecin);
-                        params.put("dateCR", dateCR);
-                        params.put("echantillonCR", echantillonCR);
-                        params.put("motifCR", motifCR);
-                        params.put("etatCR", etatCR);
-                        params.put("nouvelleVisite", nouvelleVisite);
-                        params.put("commentaireCR", commentaireCR);
+                        params.put("id_medecin", idMedecin);
+                        params.put("date", dateCR);
+                        params.put("id_echantillon", echantillonCR);
+                        params.put("id_motif", motifCR);
+                        params.put("avis", avisCR);
+                        params.put("etat", etatCR);
+                        params.put("nouvelle_visite", nouvelleVisite);
+                        params.put("compterendu", commentaireCR);
                         return params;
                     }
                 };
