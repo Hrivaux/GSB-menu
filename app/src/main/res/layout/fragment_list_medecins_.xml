@@ -28,12 +28,12 @@
 
                 <TextView
                     android:padding="8dp"
-                    android:text="Email"
+                    android:text="Adresse"
                     android:textStyle="bold" />
 
                 <TextView
                     android:padding="8dp"
-                    android:text="Adresse"
+                    android:text="Email"
                     android:textStyle="bold"
                     android:background="#CCCCCC"
                     android:layout_margin="1dp"
