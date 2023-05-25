@@ -29,7 +29,7 @@ import java.util.Map;
 public class VisitesFragment extends Fragment {
 
     private static final String TAG = "VisitesFragment";
-    private static final String URL = "https://hugo-rivaux.fr/API/afficherVisite.php";
+    private static final String URL = "http://gsb-sciencesu.alwaysdata.net/API/afficherVisite.php";
     private RequestQueue mRequestQueue;
     private TableLayout mTableLayout;
 

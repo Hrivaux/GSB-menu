@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -45,16 +46,14 @@ public class RdvFragment extends Fragment {
     private Button organiserVisiteButton;
     private RequestQueue mRequestQueue;
 
-    private static final String URL_INSERT_DATA = "https://gsb-sciencesu.alwaysdata.net/API/rdv.php";
     private static final String URL_MEDECINS = "https://gsb-sciencesu.alwaysdata.net/API/spinner_med.php";
     private static final String URL_ECHANTILLONS = "https://gsb-sciencesu.alwaysdata.net/API/spinner_echan.php";
 
+    ArrayList<String> medecinsNoms = new ArrayList<>();
+    ArrayList<Integer> medecinsIds = new ArrayList<>();
 
-    ArrayList<String> medecinsNoms = new ArrayList<String>();
-    ArrayList<Integer> medecinsIds = new ArrayList<Integer>();
-
-    ArrayList<String> echantillonsNoms = new ArrayList<String>();
-    ArrayList<Integer> echantillonsIds = new ArrayList<Integer>();
+    ArrayList<String> echantillonsNoms = new ArrayList<>();
+    ArrayList<Integer> echantillonsIds = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,15 +68,80 @@ public class RdvFragment extends Fragment {
         organiserVisiteButton = view.findViewById(R.id.button_organiser_visite);
         mRequestQueue = Volley.newRequestQueue(requireActivity());
 
-        // Récupération des médecins depuis l'API
-        JsonArrayRequest medecinsRequest = new JsonArrayRequest(Request.Method.GET,
-                URL_MEDECINS, null,
-                new Response.Listener<JSONArray>() {
+        fetchDataFromApi();
+
+        organiserVisiteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendDataToServer();
+            }
+        });
+
+        return view;
+    }
+
+    private void sendDataToServer() {
+        int medecinId = medecinsIds.get(medecinIdSpinner.getSelectedItemPosition());
+        int echantillonId = echantillonsIds.get(echantillonIdSpinner.getSelectedItemPosition());
+
+        int userId = Parametre.userID;
+
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year = datePicker.getYear();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(new Date(year - 1900, month, day));
+
+        String url = "http://gsb-sciencesu.alwaysdata.net/API/rdv.php";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
+                        Toast.makeText(getActivity(), "Rendez-vous ajouté avec succès !", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        String errorMessage = "Une erreur s'est produite lors de l'ajout du rendez-vous. Veuillez réessayer plus tard.";
+
+                        if (error.networkResponse != null) {
+                            int statusCode = error.networkResponse.statusCode;
+                            errorMessage += "\nErreur HTTP " + statusCode;
+                        }
+
+                        Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("date_visite", date);
+                params.put("medecin_id", String.valueOf(medecinId));
+                params.put("echantillon_id", String.valueOf(echantillonId));
+                params.put("visiteur_id", String.valueOf(userId));
+                return params;
+            }
+        };
+
+        mRequestQueue.add(stringRequest);
+    }
+
+    private void fetchDataFromApi() {
+        int userId = Parametre.userID;
+
+        StringRequest medecinsRequest = new StringRequest(
+                Request.Method.POST,
+                URL_MEDECINS,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
                         try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject medecin = response.getJSONObject(i);
+                            JSONArray jsonArray = new JSONArray(response);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject medecin = jsonArray.getJSONObject(i);
                                 String prenom = medecin.getString("prenom");
                                 int id = medecin.getInt("id");
                                 medecinsNoms.add(prenom);
@@ -97,7 +161,14 @@ public class RdvFragment extends Fragment {
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getActivity(), "Une erreur s'est produite lors de la récupération des médecins. Veuillez réessayer plus tard.", Toast.LENGTH_SHORT).show();
                     }
-                });
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_user", String.valueOf(userId));
+                return params;
+            }
+        };
 
         mRequestQueue.add(medecinsRequest);
 
@@ -126,50 +197,11 @@ public class RdvFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), "Une erreur s'est produite lors de la récupération des echantillons. Veuillez réessayer plus tard.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Une erreur s'est produite lors de la récupération des échantillons. Veuillez réessayer plus tard.", Toast.LENGTH_SHORT).show();
                     }
                 });
 
         mRequestQueue.add(echantillonRequest);
-        // Gestionnaire de clics pour le bouton organiserVisiteButton
-        organiserVisiteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int medecinId = medecinsIds.get(medecinIdSpinner.getSelectedItemPosition());
-                int echantillonId = echantillonsIds.get(echantillonIdSpinner.getSelectedItemPosition());
-
-                // Récupération de la date depuis le DatePicker
-                int day = datePicker.getDayOfMonth();
-                int month = datePicker.getMonth();
-                int year = datePicker.getYear();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                String date = sdf.format(new Date(year - 1900, month, day));
-
-                // Envoi de la requête pour ajouter un rendez-vous
-                Map<String, String> params = new HashMap<>();
-                params.put("date_rdv", date);
-                params.put("medecin_id", String.valueOf(medecinId));
-                params.put("echantillon_id", String.valueOf(echantillonId));
-                JSONObject jsonParams = new JSONObject(params);
-
-                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL_INSERT_DATA, jsonParams,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Toast.makeText(getActivity(), "Rendez-vous ajouté avec succès !", Toast.LENGTH_SHORT).show();
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getActivity(), "Une erreur s'est produite lors de l'ajout du rendez-vous. Veuillez réessayer plus tard.", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                mRequestQueue.add(request);
-            }
-        });
-
-        return view;
     }
 }
+

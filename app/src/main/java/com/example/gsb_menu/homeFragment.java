@@ -16,6 +16,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class homeFragment extends Fragment {
 
@@ -35,14 +38,27 @@ public class homeFragment extends Fragment {
         squareView3 = view.findViewById(R.id.squareView3);
 
         // Requête HTTP pour récupérer le nombre total d'utilisateurs
+        // Requête HTTP pour récupérer le tableau JSON contenant les résultats
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        String url = "http://gsb-sciencesu.alwaysdata.net/API/get_info.php";
+        String url = "http://gsb-sciencesu.alwaysdata.net/API/get_counts.php";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Affichage du nombre total d'utilisateurs dans le premier TextView
-                        testData.setText("Je fais mes test faite pas gaffe " + response);
+                        // Extraction des résultats du tableau JSON
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            int count_compterendus = jsonObject.getInt("count_compterendus");
+                            int count_utilisateurs = jsonObject.getInt("count_utilisateurs");
+
+                            // Affichage des résultats dans des TextViews différents
+                            TextView textView1 = view.findViewById(R.id.testdata);
+                            TextView textView2 = view.findViewById(R.id.textview2);
+                            textView1.setText("Nombre de comptes rendus : " + count_compterendus);
+                            textView2.setText("Nombre d'utilisateurs : " + count_utilisateurs);
+                        } catch (JSONException e) {
+                            // Gestion des erreurs
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -51,7 +67,7 @@ public class homeFragment extends Fragment {
             }
         });
 
-        // Ajout de la requête à la file d'attente
+// Ajout de la requête à la file d'attente
         queue.add(stringRequest);
 
         // Ajout du chiffre au centre de chaque carré

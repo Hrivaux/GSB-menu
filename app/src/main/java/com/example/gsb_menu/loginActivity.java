@@ -63,7 +63,7 @@ public class loginActivity extends AppCompatActivity {
 
 
     private void loginRequest() {
-        String loginUrl = "https://hugo-rivaux.fr/API/login.php";
+        String loginUrl = "http://gsb-sciencesu.alwaysdata.net/API/login.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, loginUrl,
                 response -> {
