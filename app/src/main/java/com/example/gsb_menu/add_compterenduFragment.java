@@ -123,7 +123,7 @@ public class add_compterenduFragment extends Fragment {
                 if (response.equals("success")) {
                     Toast.makeText(getActivity(), "Compte rendu créé avec succès", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getActivity(), "Le coCompte rendu créé avec succès", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Le compte rendu créé avec succès", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
