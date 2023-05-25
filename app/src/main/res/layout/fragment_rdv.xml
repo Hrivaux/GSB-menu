@@ -25,6 +25,11 @@
                 android:textColor="@color/lavender"
                 android:layout_marginBottom="32dp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Médecin :" />
+
             <Spinner
                 android:id="@+id/medecin_id"
                 android:layout_width="match_parent"
@@ -32,6 +37,11 @@
                 android:hint="ID Médecin"
                 android:inputType="number"
                 android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Échantillon :" />
 
             <Spinner
                 android:id="@+id/echantillon_id"

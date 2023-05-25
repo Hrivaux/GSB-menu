@@ -101,15 +101,12 @@ public class add_compterenduFragment extends Fragment {
         int selectedRadioButtonId = radioGroup.getCheckedRadioButtonId();
         int avis;
         if (bienPasseRadioButton.isChecked()) {
-            avis = 2; // Bien passé
+            avis = 3; // Bien passé
         } else {
-            avis = 3; // Mal passé
+            avis = 2; // Mal passé
         }
-        int day = datePicker.getDayOfMonth();
-        int month = datePicker.getMonth();
-        int year = datePicker.getYear();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String date = sdf.format(new Date(year - 1900, month, day));
+        String date = datePicker.getYear() + "-" + (datePicker.getMonth() + 1) + "-" + datePicker.getDayOfMonth();
+
 
         Log.d("Data", "id_visiteur: " + id_visiteur);
         Log.d("Data", "id_medecin: " + id_medecin);
@@ -126,7 +123,7 @@ public class add_compterenduFragment extends Fragment {
                 if (response.equals("success")) {
                     Toast.makeText(getActivity(), "Compte rendu créé avec succès", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getActivity(), "Erreur lors de la création du compte rendu", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Le coCompte rendu créé avec succès", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
@@ -140,7 +137,7 @@ public class add_compterenduFragment extends Fragment {
                 Map<String, String> params = new HashMap<>();
                 params.put("id_visiteur", String.valueOf(id_visiteur));
                 params.put("id_medecin", String.valueOf(id_medecin));
-                params.put("date_visite", date);
+                params.put("date", date);
                 params.put("id_echantillon", String.valueOf(id_echantillon));
                 params.put("id_motif", String.valueOf(id_motif));
                 params.put("compterendu", compteRendu);
