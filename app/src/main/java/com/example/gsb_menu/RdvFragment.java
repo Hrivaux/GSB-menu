@@ -64,7 +64,6 @@ public class RdvFragment extends Fragment {
         medecinIdSpinner = view.findViewById(R.id.medecin_id);
         echantillonIdSpinner = view.findViewById(R.id.echantillon_id);
         datePicker = view.findViewById(R.id.datePicker);
-
         organiserVisiteButton = view.findViewById(R.id.button_organiser_visite);
         mRequestQueue = Volley.newRequestQueue(requireActivity());
 
