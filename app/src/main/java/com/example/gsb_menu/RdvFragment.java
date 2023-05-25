@@ -59,7 +59,7 @@ public class RdvFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_rdv, container, false);
         TextView loginText = view.findViewById(R.id.loginText);
-        loginText.setText("Prise de rendez-vous");
+        loginText.setText("Prise  de rendez-vous");
 
         medecinIdSpinner = view.findViewById(R.id.medecin_id);
         echantillonIdSpinner = view.findViewById(R.id.echantillon_id);
