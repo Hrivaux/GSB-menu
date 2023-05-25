@@ -53,7 +53,7 @@
                 android:layout_height="50dp"
                 android:id="@+id/passwordEditText"
                 android:background="@drawable/custom_edittext"
-                android:drawableLeft="@drawable/baseline_person_24"
+                android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="8dp"
                 android:hint="Mot de passe"
                 android:inputType="textPassword"

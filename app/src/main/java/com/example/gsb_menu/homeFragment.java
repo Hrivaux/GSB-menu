@@ -22,7 +22,7 @@ import org.json.JSONObject;
 
 public class homeFragment extends Fragment {
 
-    private TextView testData;
+ /*   private TextView testData;
     private SquareView squareView2;
     private SquareView squareView3;
 
@@ -75,5 +75,5 @@ public class homeFragment extends Fragment {
         squareView3.setText("test");
 
         return view;
-    }
+    }*/
 }

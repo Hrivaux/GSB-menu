@@ -45,32 +45,16 @@
 
     <item
         android:id="@+id/nav_list_medecins"
-        android:icon="@drawable/nav_list_medecins"
+        android:icon="@drawable/antecedents_medicaux"
         android:title="Liste des médecins"></item>
 
     <item
-        android:id="@+id/nav_add_medecins"
-        android:icon="@drawable/nav_add_medecins"
-        android:title="Ajouter un médecin"></item>
-
-    <item
                 android:id="@+id/nav_add_compterendu"
-                android:icon="@drawable/nav_add_compte"
+                android:icon="@drawable/projet"
                 android:title="Ajouter un compte-rendu"></item>
 
         </menu>
 
-    </item>
-
-    <item android:title="Administration">
-        <menu>
-
-    <item
-        android:id="@+id/nav_add_compte"
-        android:icon="@drawable/nav_add_compte"
-        android:title="Création de compte"></item>
-
-        </menu>
     </item>
 
     <item android:title="Mon compte">

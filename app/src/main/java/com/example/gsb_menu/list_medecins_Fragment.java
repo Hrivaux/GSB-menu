@@ -32,7 +32,7 @@ import java.util.List;
 public class list_medecins_Fragment extends Fragment {
 
         private static final String TAG = "TableDataActivity";
-        private static final String URL = "https://hugo-rivaux.fr/API/medecin.php";
+        private static final String URL = "http://gsb-sciencesu.alwaysdata.net/API/medecin.php";
         private RequestQueue mRequestQueue;
         private TableLayout mTableLayout;
 
