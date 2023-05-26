@@ -114,7 +114,7 @@ public class add_compterenduFragment extends Fragment {
         Log.d("Data", "id_motif: " + id_motif);
         Log.d("Data", "id_echantillon: " + id_echantillon);
         Log.d("Data", "compteRendu: " + compteRendu);
-        Log.d("Data", "avis: " + avis);
+         Log.d("Data", "avis: " + avis);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://gsb-sciencesu.alwaysdata.net/API/redactCR.php", new Response.Listener<String>() {
             @Override
